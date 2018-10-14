@@ -5,7 +5,7 @@ IF969 - Algoritmos e Estrutura de Dados
 
 Autor: José Sheldon Brito Fekete (jsbf)
 Email: jsbf@cin.ufpe.br
-Data: 2018-10-02
+Data: 2018-10-10
 
 Copyright(c) 2018 José Sheldon Brito Fekete
 """
