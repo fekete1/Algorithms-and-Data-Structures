@@ -1,25 +1,35 @@
+'''
+Universidade Federal de Pernambuco (UFPE) (http://www.ufpe.com.br)
+Centro de Informatica (CIn) (http://www.cin.ufpe.br)
+IF969 - Algoritmos e Estrutura de Dados
+
+Autor: José Sheldon Brito Fekete (jsbf)
+Email: jsbf@cin.ufpe.br
+Data: 2018-10-14
+'''
+
+# -*- coding: utf-8 -*-
+
 from Ngrama import *
 from ListaEncadeada import *
 import numpy as np
-import string
+import re
 
-def remove_pontuacao(texto):
-    '''
-    Remove todas as pontuações de uma texto.
-    '''
-    aux = ''
-    for x in texto:
-        if x not in string.punctuation:
-            aux+= x
-    return aux
+
 
 def arquivo_em_vetor(nome_arquivo):
     '''
     Recebe o nome do arquivo de texto, criando um vetor que possui cada palavra desse texto.
+    filtrando pontuações e quebras de linhas
     '''
+    exp = r'[^\w ]{1}'
+    exp_quebras = r'\s{1,}'
+    
     arquivo = open(nome_arquivo,'r')
     texto = arquivo.read()
-    texto = texto.replace('\n',' ').replace('\t',' ').lower().split(' ')
+    texto = re.sub(exp_quebras, ' ', texto)
+    texto = re.sub(exp, '', texto)
+    texto = texto.lower().split(' ')
     vetor = np.array(texto)
     arquivo.close()
     return vetor
@@ -35,7 +45,7 @@ class Documento(object):
         self.__palavras = arquivo_em_vetor(nome_arquivo)
         
     def __str__(self):
-        return str(tuple(self.__palavras))
+        return str(self.__nome_arquivo)
     
     def __repr__(self):
         return 'Documento'+'("'+self.__nome_arquivo+'")'
@@ -54,10 +64,34 @@ class Documento(object):
                 lista.anexar(temp)
         return lista
 
+    def contencao(self,documento):
+        '''
+        Verifica a contenção do objeto no documento passado como parâmetro
+        '''
+
+        cont = 0
+        ngramas_atual = self.gerarNgramas()
+        ngramas_documento = documento.gerarNgramas()
+        for ngrama in ngramas_atual:
+            if ngrama in ngramas_documento:
+                cont +=1
+                ngramas_documento.remover(ngrama)
+        contencao = cont/len(ngramas_atual)
+        return contencao
+                
+
     @property
     def nome_arquivo(self):
         return self.__nome_arquivo
     
+    @nome_arquivo.setter
+    def nome_arquivo(self,novo_nome):
+        self.__nome_arquivo = novo_nome
+    
     @property
     def palavras(self):
         return self.__palavras
+    
+    @palavras.setter
+    def palavras(self,novas_palavras):
+        self.__palavras = novas_palavras
