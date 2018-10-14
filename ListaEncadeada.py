@@ -53,7 +53,8 @@ class ListaDuplamenteEncadeada:
 
     def inserir(self,index,valor):
         '''
-        
+        Recebe o valor e o índice onde o nó ira ser inserido, criando o nó e inserindo ele na
+        posição determinada
         '''
         if index >= self.tamanho -1:
             self.anexar(valor)
