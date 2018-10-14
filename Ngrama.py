@@ -22,6 +22,9 @@ class Ngrama(object):
         self.__tamanho = self.__ngrama.size
     
     def __str__(self):
+        '''
+        Quando printando ou transformado em string retorna a sua sequencia de palavras.
+        '''
         return str(tuple(self.__ngrama))
 
 
@@ -30,10 +33,17 @@ class Ngrama(object):
 
         
     def __len__(self):
+        '''
+        Retorna a quantidade de palavras do Ngrama.
+        '''
         return self.__tamanho
     
     
     def __eq__(self,outro):
+        '''
+        Determina como irá se comportar o "==" quando usado no objeto.
+        Se comportará comparando o str dos dois elementos comparados.
+        '''
         return str(self) == str(outro)
 
     @property
