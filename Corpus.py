@@ -11,6 +11,7 @@ Data: 2018-10-14
 import os
 from ListaEncadeada import *
 from Documento import *
+from Profile import *
 
 def diretorio_em_lista():
     '''
@@ -58,6 +59,7 @@ class Corpus(object):
     Classe responsável por armazenar um conjunto de documentos de texto de um determinado
     diretório
     '''
+    
     def __init__(self):
         self.__corpus = diretorio_em_lista()
 
