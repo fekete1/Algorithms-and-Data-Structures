@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Universidade Federal de Pernambuco (UFPE) (http://www.ufpe.com.br)
 Centro de Informatica (CIn) (http://www.cin.ufpe.br)
@@ -8,7 +10,7 @@ Email: jsbf@cin.ufpe.br
 Data: 2018-10-14
 '''
 
-# -*- coding: utf-8 -*-
+
 
 from Ngrama import *
 from ListaEncadeada import *
@@ -25,7 +27,7 @@ def arquivo_em_vetor(nome_arquivo):
     exp = r'[^\w ]{1}'
     exp_quebras = r'\s{1,}'
     
-    arquivo = open(nome_arquivo,'r')
+    arquivo = open(nome_arquivo,'r',encoding = 'utf-8')
     texto = arquivo.read()
     texto = re.sub(exp_quebras, ' ', texto)
     texto = re.sub(exp, '', texto)
